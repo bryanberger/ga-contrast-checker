@@ -16,7 +16,7 @@
       //Calculate the accessible colours based on a ratio of 3:1 as
       //specified by the WCAG. This returns a JSON object with the
       //accessible colour combinations
-      var result = colorable(colors, {compact: true, threshold: 3});
+      var result = colorable(colors, {compact: true, threshold: 4.5});
 
       //Write the JSON and formatted CSV matrices to files.
       fs.writeFileSync('contrast.json', JSON.stringify(result, null, 2));
@@ -44,7 +44,8 @@ function getCSV(result) {
 
 //Convert the Colorable JSON object to a hacky HTML page
 function getHTML(result) {
-    var str = '<style>*{margin:0;padding:0;box-sizing:border-box;font-family:"Circular Std"</style>';
+    var str = '<style>*{margin:0;padding:0;box-sizing:border-box;font-family:"Circular Std"</style>\r\n';
+        str += '<h4 style="padding:1em;text-align:center;">Color combinations that meet the AA 4.5:1 contrast ratio</h4>\r\n';
 
     for (var i = 0; i < result.length; i++) {
         str += '<div style="width:100%; padding:1em; background-color:'+result[i].hex+';">';
@@ -53,12 +54,12 @@ function getHTML(result) {
           var dict = result[i].combinations[x].accessibility;
 
           if(dict['aa']) {
-            str += '<div style="border-radius:4px; padding:0.25rem 0.5rem; margin-right:0.5rem; display:inline-block; color:' + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '">AA</div>';
+            str += '<div style="border-radius:4px; height:30px;width:60px; padding:0.25rem 0.5rem; margin-right:0.5rem; display:inline-block; color:' + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '"></div>';
           }
 
-          if(dict['aaLarge']) {
-            str += '<div style="border-radius:4px; padding:0.25rem 0.5rem; margin-right:0.5rem; display:inline-block; color:' + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '">AA Large</div>';
-          }
+          // if(dict['aaLarge']) {
+          //   str += '<div style="border-radius:4px; padding:0.25rem 0.5rem; margin-right:0.5rem; display:inline-block; color:' + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '">AA Large</div>';
+          // }
         }
 
         str += '</div>\r\n';

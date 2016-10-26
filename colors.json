@@ -1,6 +1,22 @@
 {
-  "red": "#FD433B",
+  "red": "#E52828",
   "white": "#fff",
-  "darkgrey": "#222",
-  "teal": "#0D8390"
+  "grey-100": "#F6F6F6",
+  "grey-200": "#ECECEC",
+  "grey-300": "#DADADA",
+  "grey-400": "#C3C3C3",
+  "grey-500": "#818181",
+  "grey-600": "#4E4E4E",
+  "grey-700": "#383838",
+  "grey": "#222",
+  "black": "#000",
+  "teal-100": "#C8F5EE",
+  "teal-200": "#85E8DA",
+  "teal-300": "#1ECAC7",
+  "teal-400": "#07AAB0",
+  "teal": "#0D8390",
+  "teal-600": "#026E7C",
+  "teal-700": "#01515F",
+  "teal-800": "#01414C",
+  "teal-900": "#002C34"
 }
