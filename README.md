@@ -6,11 +6,11 @@ and includes pass/fail scores for the
 [WCAG accessibility guidelines](http://www.w3.org/TR/WCAG20/#visual-audio-contrast).
 
 ## Getting Started
+Install node.js version ~6.1.0
 
 ```bash
 npm install
 ```
-
 
 ## Usage
 
