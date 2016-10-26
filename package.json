@@ -1,0 +1,15 @@
+{
+  "name": "ga-contrast-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp contrast"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colorable": "^1.0.5",
+    "gulp": "^3.9.1"
+  }
+}
