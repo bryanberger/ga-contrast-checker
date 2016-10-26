@@ -54,7 +54,7 @@ function getHTML(result) {
           var dict = result[i].combinations[x].accessibility;
 
           if(dict['aa']) {
-            str += '<div style="border-radius:4px; height:30px;width:60px; padding:0.25rem 0.5rem; margin-right:0.5rem; display:inline-block; color:' + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '"></div>';
+            str += '<div style="border-radius:4px; height:30px; padding:0.25rem 0.5rem; margin-right:0.5rem; display:inline-block; color:' + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '">'+result[i].combinations[x].hex+'</div>';
           }
 
           // if(dict['aaLarge']) {
