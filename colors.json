@@ -1,5 +1,10 @@
 {
+  "red-orig": "#FA4542",
   "red": "#E52828",
+  "red-100": "#E40404",
+  "red-200": "#DE3535",
+  "circuits-blue":"#358df2",
+  "tag-yellow": "#FFDB00",
   "white": "#fff",
   "grey-100": "#F6F6F6",
   "grey-200": "#ECECEC",
