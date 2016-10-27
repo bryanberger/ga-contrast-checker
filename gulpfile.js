@@ -91,10 +91,10 @@ function getComplexHTML(result) {
 
           str += '<div style="width:23%; margin: .5em 1%; background-color:'+color.hex+'; position:relative; padding:1em; float:left; overflow:hidden;">';
           str += '<div style="color:'+bodyColor+'; font-size:23px; font-weight:bold; margin-bottom:8px">Flatiron</div>';
-          str += '<div style="margin-bottom:8px; color:'+combo.hex+'">GA New York City (East)</div>';
+          str += '<div style="margin-bottom:8px; font-weight: bold; color:'+combo.hex+'">GA New York City (East)</div>';
           str += '<div style="margin-bottom:8px; color:'+bodyColor+'">902 Broadway, Floor 4<br>New York, NY 10010</div>';
           str += '<div style="color:'+bodyColor+';">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce <a style="color:'+combo.hex+'" href="#">faucibus exinect</a> tincidunt. Aenean venenatis consectetur augue, eget blandit</div>';
-          str += '<div style="margin-top:0.5em; color:'+bodyColor+'">'+combo.contrast.toFixed(2)+'</div>'
+          str += '<div style="margin-top:0.5em; color:'+bodyColor+'">'+combo.contrast.toFixed(2)+' | '+combo.hex+'</div>'
           str += '</div>';
         }
       }
