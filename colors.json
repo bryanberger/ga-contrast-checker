@@ -3,7 +3,11 @@
   "red": "#E52828",
   "red-100": "#E40404",
   "red-200": "#DE3535",
+  "red-gmail": "#d14836",
+  "red-airbnb": "#ff5a5f",
   "circuits-blue":"#358df2",
+  "credentials-navy": "#122964",
+  "credentials-sky": "#47a2f8",
   "tag-yellow": "#FFDB00",
   "white": "#fff",
   "grey-100": "#F6F6F6",
@@ -23,5 +27,6 @@
   "teal-600": "#026E7C",
   "teal-700": "#01515F",
   "teal-800": "#01414C",
-  "teal-900": "#002C34"
+  "teal-900": "#002C34",
+  "teal-mailchimp": "#52bad5"
 }

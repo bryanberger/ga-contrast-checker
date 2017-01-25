@@ -18,4 +18,4 @@ Edit the `colors.json` file with a set of hex colors to test against. Currently 
 npm start
 ```
 
-Check the root folder for the `contrast.html` file and open it. There is also a json and csv file in there as well.
+Check the `bin` folder for the `contrast.html` file and open it. There is also a json and csv file in there as well.

@@ -8,7 +8,7 @@
   var fs = require("fs");
 
   //Define a task for gulp to calculate our colour matrix
-  gulp.task("contrast", function () {
+  gulp.task("default", function () {
 
       //Our palette
       var colors = JSON.parse(fs.readFileSync('./colors.json'));
@@ -19,10 +19,10 @@
       var result = colorable(colors, {compact: true, threshold: 4.5});
 
       //Write the JSON and formatted CSV matrices to files.
-      fs.writeFileSync('contrast.json', JSON.stringify(result, null, 2));
-      fs.writeFileSync('contrast.csv', getCSV(result));
-      fs.writeFileSync('contrast.html', getHTML(result));
-      fs.writeFileSync('contrast2.html', getComplexHTML(result));
+      fs.writeFileSync('bin/contrast.json', JSON.stringify(result, null, 2));
+      fs.writeFileSync('bin/contrast.csv', getCSV(result));
+      fs.writeFileSync('bin/contrast.html', getHTML(result));
+      fs.writeFileSync('bin/contrast2.html', getComplexHTML(result));
 
   });
 
@@ -45,11 +45,12 @@ function getCSV(result) {
 
 //Convert the Colorable JSON object to a hacky HTML page
 function getHTML(result) {
-    var str = '<style>*{margin:0;padding:0;box-sizing:border-box;font-family:"Circular Std"</style>\r\n';
+    var str = '<style>*{margin:0;padding:0;box-sizing:border-box;font-family:"Circular Std";}</style>\r\n';
         str += '<h4 style="padding:1em;text-align:center;">Color combinations that meet the AA 4.5:1 contrast ratio</h4>\r\n';
 
     for (var i = 0; i < result.length; i++) {
-        str += '<div style="width:100%; padding:1em; background-color:'+result[i].hex+';">';
+        str += '<div class="strip" style="width:100%; padding:1em; background-color:'+result[i].hex+';">';
+        str += '<small>bg: '+result[i].hex+'</small> ';
 
         for (var x = 0; x < result[i].combinations.length; x++) {
           var dict = result[i].combinations[x].accessibility;
@@ -72,7 +73,7 @@ function getHTML(result) {
 
 //Convert the Colorable JSON object to a hacky complex HTML page
 function getComplexHTML(result) {
-    var str = '<style>*{margin:0;padding:0;box-sizing:border-box;font-family:"Circular Std"</style>\r\n';
+    var str = '<style>*{margin:0;padding:0;box-sizing:border-box;font-family:"Circular Std";}</style>\r\n';
         str += '<h4 style="padding:1em;text-align:center;">Color combinations that meet the AA 4.5:1 contrast ratio</h4>\r\n';
 
     for (var i = 0; i < result.length; i++) {
