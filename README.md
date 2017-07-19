@@ -5,6 +5,9 @@ useful for finding safe color combinations with predefined colors
 and includes pass/fail scores for the
 [WCAG accessibility guidelines](http://www.w3.org/TR/WCAG20/#visual-audio-contrast).
 
+## Sample Output
+![GitHub Logo](/assets/sample_output.png)
+
 ## Getting Started
 Clone this repo. Make sure you have Node installed.
 

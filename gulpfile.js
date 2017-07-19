@@ -45,19 +45,19 @@ function getCSV(result) {
 
 //Convert the Colorable JSON object to a hacky HTML page
 function getHTML(result) {
-    var str = '<link rel="stylesheet" href="../assets/css/tooltip.css">\r\n';
-        str += '<style>*{margin:0;padding:0;box-sizing:border-box;font-family:"Circular Std";}</style>\r\n';
-        str += '<h4 style="padding:1em;text-align:center;">Color combinations that meet the AA 4.5:1 contrast ratio</h4>\r\n';
+    var str = '<link rel="stylesheet" href="../assets/css/main.css">\r\n';
+        str += '<link rel="stylesheet" href="../assets/css/tooltip.css">\r\n';
+        str += '<h4>Color combinations that meet the AA 4.5:1 contrast ratio</h4>\r\n';
 
     for (var i = 0; i < result.length; i++) {
-        str += '<div class="strip" style="width:100%; padding:1em; background-color:'+result[i].hex+';">';
+        str += '<div class="strip" style="background-color:'+result[i].hex+';">';
         str += '<small>bg: '+result[i].name+' ('+result[i].hex+')</small> ';
 
         for (var x = 0; x < result[i].combinations.length; x++) {
           var dict = result[i].combinations[x].accessibility;
 
           if(dict['aa']) {
-            str += '<div data-tooltip="'+result[i].combinations[x].name+'" style="border-radius:4px; height:30px; padding:0.25rem 0.5rem; margin-right:0.5rem; display:inline-block; color:'
+            str += '<div class="tooltip" data-tooltip="'+result[i].combinations[x].name+'" style="color:'
                 + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '">'+result[i].combinations[x].hex+'</div>';
           }
 

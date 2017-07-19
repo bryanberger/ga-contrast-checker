@@ -1,20 +1,4 @@
 /**
- * Demo styles
- * Not needed for tooltips to work
- */
-
-/* `border-box`... ALL THE THINGS! */
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-/**
  * Tooltip Styles
  */
 
@@ -23,6 +7,11 @@ html {
   position: relative;
   z-index: 2;
   cursor: pointer;
+  border-radius: 4px;
+  height: 30px;
+  padding: 0.25rem 0.5rem;
+  margin-right:0.5rem;
+  display:inline-block; 
 }
 
 /* Hide the tooltip content by default */
