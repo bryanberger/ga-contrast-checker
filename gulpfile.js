@@ -16,13 +16,13 @@
       //Calculate the accessible colours based on a ratio of 3:1 as
       //specified by the WCAG. This returns a JSON object with the
       //accessible colour combinations
-      var result = colorable(colors, {compact: true, threshold: 4.5});
+      var result = colorable(colors, {compact: true, threshold: 0});
 
       //Write the JSON and formatted CSV matrices to files.
       fs.writeFileSync('build/contrast.json', JSON.stringify(result, null, 2));
       fs.writeFileSync('build/contrast.csv', getCSV(result));
       fs.writeFileSync('build/contrast.html', getHTML(result));
-      fs.writeFileSync('build/contrast2.html', getComplexHTML(result));
+      // fs.writeFileSync('build/contrast2.html', getComplexHTML(result));
 
   });
 
@@ -44,38 +44,78 @@ function getCSV(result) {
 }
 
 //Convert the Colorable JSON object to a hacky HTML page
-function getHTML(result) {
-    var str = '<link rel="stylesheet" href="../assets/css/main.css">\r\n';
+function getHTML(result, threshold) {
+  // css and header
+    var str =  '<link rel="stylesheet" href="../assets/css/main.css">\r\n';
         str += '<link rel="stylesheet" href="../assets/css/tooltip.css">\r\n';
-        str += '<h4>Color combinations that meet the AA 4.5:1 contrast ratio</h4>\r\n';
+        str += '<div><ul>';
+        str += '<li><span>AA</span> - greater than 4.5 (for normal sized text)</li>';
+        str += '<li><span>AA Large</span> - greater than 3 (for bold text or text larger than 24px)</li>';
+        str += '<li><span>AAA</span> - greater than 7</li>';
+        str += '<li><span>AAA Large</span> - greater than 4.5</li>';
+        str += '</ul></div>\r\n';
 
     for (var i = 0; i < result.length; i++) {
-        str += '<div class="strip" style="background-color:'+result[i].hex+';">';
-        str += '<small>bg: '+result[i].name+' ('+result[i].hex+')</small> ';
+      str += '<div class="strip" style="background-color:'+result[i].hex+';">';
+      str += '<small>bg: '+result[i].name+' ('+result[i].hex+')</small> ';
+      str += '<table>';
+      str +=   '<tr>';
+      str +=      '<th>AA</th>';
+      str +=      '<th>AA Large</th>';
+      str +=      '<th>AAA</th>';
+      str +=      '<th>AAA Large</th>';
+      str +=   '</tr>';
 
-        for (var x = 0; x < result[i].combinations.length; x++) {
-          var dict = result[i].combinations[x].accessibility;
+      for (var x = 0; x < result[i].combinations.length; x++) {
+        var dict = result[i].combinations[x].accessibility;
+        var resultObj = result[i];
+        var aaStr = '';
+        var aaLargeStr = '';
+        var aaaStr = '';
+        var aaaLargeStr = '';
 
-          if(dict['aa']) {
-            str += '<div class="tooltip" data-tooltip="'+result[i].combinations[x].name+'" style="color:'
-                + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '">'+result[i].combinations[x].hex+'</div>';
-          }
-
-          // if(dict['aaLarge']) {
-          //   str += '<div style="border-radius:4px; padding:0.25rem 0.5rem; margin-right:0.5rem; display:inline-block; color:' + result[i].hex + '; background-color:' + result[i].combinations[x].hex + '">AA Large</div>';
-          // }
+        if(dict['aa']) {
+          aaStr += createColorDiv(resultObj, x)
         }
 
-        str += '</div>\r\n';
-    }
+        if(dict['aaLarge']) {
+          aaLargeStr += createColorDiv(resultObj, x)
+        }
+
+        if(dict['aaa']) {
+          aaaStr += createColorDiv(resultObj, x)
+        }
+
+        if(dict['aaaLarge']) {
+          aaaLargeStr += createColorDiv(resultObj, x)
+        }
+
+        if(aaStr !== '' && aaLargeStr !== '' && aaStr !== '' && aaLargeStr !== '') {
+          str +=   '<tr>';
+          str +=      '<td>' + aaStr + '</td>';
+          str +=      '<td>' + aaLargeStr + '</td>';
+          str +=      '<td>' + aaaStr + '</td>';
+          str +=      '<td>' + aaaLargeStr + '</td>';
+          str +=   '</tr>';
+        }
+      } // end 2nd loop
+
+      str +=  '</table>';
+      str += '</div>\r\n';
+    } // end first loop
 
     return str;
 }
 
+function createColorDiv(resultObj, x) {
+  return '<div class="tooltip" data-tooltip="'+resultObj.combinations[x].name+'" style="color:'
+      + resultObj.hex + '; background-color:' + resultObj.combinations[x].hex + '">'+resultObj.combinations[x].hex+'</div>';
+}
+
 //Convert the Colorable JSON object to a hacky complex HTML page
-function getComplexHTML(result) {
+function getComplexHTML(result, threshold) {
     var str = '<style>*{margin:0;padding:0;box-sizing:border-box;font-family:"Circular Std";}</style>\r\n';
-        str += '<h4 style="padding:1em;text-align:center;">Color combinations that meet the AA 4.5:1 contrast ratio</h4>\r\n';
+        str += '<h4 style="padding:1em;text-align:center;">Color combinations that meet the AA ' + threshold + ' contrast ratio</h4>\r\n';
 
     for (var i = 0; i < result.length; i++) {
       var color = result[i];

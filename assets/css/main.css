@@ -19,3 +19,28 @@ h4 {
   width:100%;
   padding:1em;
 }
+
+
+td, th {
+  padding: 1em;
+}
+
+
+ul {
+  border-radius: 8px;
+  list-style: none;
+  margin: 0 0 1em 0;
+  padding: 1em;
+  background: #ececec;
+  max-width: 450px;
+  color: #333;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+ul > li > span {
+  font-weight: bold;
+  width: 80px;
+  display: inline-block;
+  text-align: right;
+}
